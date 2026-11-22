@@ -1,0 +1,34 @@
+name: Lanceur Exégèse Littéraire
+
+on:
+  workflow_dispatch:
+    inputs:
+      texte:
+        description: "Texte ou poème à interpréter"
+        required: true
+        default: "Jadis sous le verger où brillait le soleil, mon âme cherchait l'éternité derrière le voile."
+        type: string
+      seuil:
+        description: "Seuil de pondération (ex: 3 pour un extrait, 6 pour un texte long)"
+        required: false
+        default: "3"
+        type: string
+
+jobs:
+  analyser:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Exécution de la Matrice d'Interprétation
+        env:
+          TEXTE_UTILISATEUR: ${{ github.event.inputs.texte }}
+          SEUIL_UTILISATEUR: ${{ github.event.inputs.seuil }}
+        run: |
+          node cli.js --seuil="$SEUIL_UTILISATEUR" "$TEXTE_UTILISATEUR"
