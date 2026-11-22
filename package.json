@@ -1,0 +1,14 @@
+{
+  "name": "matrice-exegese-litteraire",
+  "version": "1.0.0",
+  "description": "Moteur d'interprétation littéraire et herméneutique basé sur la tradition",
+  "main": "src/ExegeseMoteur.js",
+  "bin": {
+    "exegese": "./cli.js"
+  },
+  "scripts": {
+    "start": "node cli.js"
+  },
+  "keywords": ["litterature", "hermeneutique", "rhetorique", "propp", "analyse-textuelle"],
+  "license": "MIT"
+}
